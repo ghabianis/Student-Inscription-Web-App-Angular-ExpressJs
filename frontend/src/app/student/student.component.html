@@ -1,0 +1,109 @@
+<app-base></app-base>
+<ul class="nav nav-pills nav-fill gap-2 p-1 small bg-primary rounded-5 shadow-sm w-75 ml-50" id="pillNav2"
+    role="tablist"
+    style="--bs-nav-link-color: var(--bs-white); --bs-nav-pills-link-active-color: var(--bs-primary); --bs-nav-pills-link-active-bg: var(--bs-white);">
+    <li class="nav-item" role="presentation">
+        <button class="nav-link rounded-5" id="home-tab2" data-bs-toggle="tab" type="button" role="tab"
+            aria-selected="false" (click)="toggleTable(true,false,false)">Add Student</button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link active rounded-5" id="profile-tab2" data-bs-toggle="tab" type="button" role="tab"
+            aria-selected="true" (click)="toggleTable(false,true,false)">View Students</button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link rounded-5" id="contact-tab2" data-bs-toggle="tab" type="button" role="tab"
+            aria-selected="false" (click)="toggleTable(false,false,true)">Manage</button>
+    </li>
+</ul>
+
+<form *ngIf="showForm" class="form" [formGroup]="createForm" (ngSubmit)="createStudent()" novalidate>
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Email address</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="email">
+        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">LastName</label>
+        <input type="text" class="form-control" id="exampleInputPassword1" formControlName="lastname">
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">FirstName</label>
+        <input type="text" class="form-control" id="exampleInputPassword1 " formControlName="firstname">
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Class</label>
+        <input type="text" class="form-control" id="exampleInputPassword1" formControlName="classname">
+    </div>
+
+    <div class="d-grid gap-2" *ngIf="showForm">
+        <button type="submit" class="btn btn-primary">Add Student</button>
+    </div>
+</form>
+
+<table class="table" *ngIf="showTable">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Email</th>
+        <th scope="col">FirstName</th>
+        <th scope="col">LastName</th>
+        <th scope="col">Class</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let student of students.data; let i = index">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ student.email }}</td>
+        <td>{{ student.firstname }}</td>
+        <td>{{ student.lastname }}</td>
+        <td>{{ student.classname }}</td>
+        <td>
+            <button class="btn btn mr-3" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-edit" style="font-size:20px;color:red" ></i></button>
+            <button class="btn btn mr-3" (click)="deleteStudent(student.id)"><i class="fa fa-trash-o" style="font-size:20px"></i></button>   
+        </td>
+          
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Update</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form  [formGroup]="updateForm" (ngSubmit)="updateStudent(student.id)" novalidate>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="email" [(ngModel)]="student.email"  >
+                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label"></label>
+                    <input type="text" class="form-control" id="exampleInputPassword1" formControlName="lastname" [(ngModel)]="student.lastname"  >
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">FirstName</label>
+                    <input type="text" class="form-control" id="exampleInputPassword1"  formControlName="firstname" [(ngModel)]="student.firstname" >
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Class</label>
+                    <input type="text" class="form-control" id="exampleInputPassword1" formControlName="classname"  [(ngModel)]="student.classname" >
+                </div>
+            
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Update</button>
+                  </div>
+            </form>
+        </div>
+    
+      </div>
+    </div>
+  </div>
+      </tr>
+    </tbody>
+  </table>
+
+
+
