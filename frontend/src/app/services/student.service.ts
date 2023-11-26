@@ -69,7 +69,13 @@ export class StudentService {
         })
       },
       (error) => {
-        console.error('Error fetching students:', error);
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: `${error.message}!`,
+          showConfirmButton: false,
+          timer: 5000
+        })
       }
     )
   }
@@ -94,7 +100,13 @@ export class StudentService {
 
       },
       (error) => {
-        console.error('Error fetching students:', error);
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: `${error.message}!`,
+          showConfirmButton: false,
+          timer: 1000
+        })
       }
     )
   }

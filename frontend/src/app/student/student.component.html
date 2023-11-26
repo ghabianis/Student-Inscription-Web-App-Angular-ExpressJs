@@ -75,25 +75,25 @@
             <form  [formGroup]="updateForm" (ngSubmit)="updateStudent(student.id)" novalidate>
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="email" [(ngModel)]="student.email"  >
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="email" [(ngModel)]="student.email">
                     <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputPassword1" class="form-label"></label>
-                    <input type="text" class="form-control" id="exampleInputPassword1" formControlName="lastname" [(ngModel)]="student.lastname"  >
+                    <input type="text" class="form-control" id="exampleInputPassword1" formControlName="lastname" [(ngModel)]="student.lastname">
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputPassword1" class="form-label">FirstName</label>
-                    <input type="text" class="form-control" id="exampleInputPassword1"  formControlName="firstname" [(ngModel)]="student.firstname" >
+                    <input type="text" class="form-control" id="exampleInputPassword1"  formControlName="firstname" [(ngModel)]="student.firstname">
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputPassword1" class="form-label">Class</label>
-                    <input type="text" class="form-control" id="exampleInputPassword1" formControlName="classname"  [(ngModel)]="student.classname" >
+                    <input type="text" class="form-control" id="exampleInputPassword1" formControlName="classname"  [(ngModel)]="student.classname">
                 </div>
             
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Update</button>
+                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Update</button>
                   </div>
             </form>
         </div>

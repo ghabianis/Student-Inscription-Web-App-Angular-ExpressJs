@@ -11,7 +11,7 @@ const router = express.Router();
 router.get('/', auth, adminManagementController.fetchAll);
 router.get('/students', adminManagementController.students);
 router.post('/createStudent', adminManagementController.createStudent);
-router.put('/x/:id', adminManagementController.updateStudent);
+router.put('/updateStudent/:id', adminManagementController.updateStudent);
 router.delete('/deleteStudent/:id', adminManagementController.deleteStudent);
 router.get('/visitcount', adminManagementController.visitcount);
 router.get('/absences/monthly',adminManagementController.monthly);
