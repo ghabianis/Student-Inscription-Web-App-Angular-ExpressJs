@@ -37,6 +37,15 @@ export class StudentService {
     );
   }
 
+  getStudentsCount(): Observable<any>{
+    return this.http.get<any>(`${this.url}/getStudentsCount`, { responseType: "json" })
+    .pipe(
+      catchError(this.errorHandlerService.handleError<any>("students", []))
+    );
+  }
+
+  
+
   createStudent(student:Students):any{
     return this.http.post<Students[]>(`${this.url}/createStudent`, student).subscribe(
       (response) => {

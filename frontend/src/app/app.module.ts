@@ -8,12 +8,18 @@ import { BaseComponent } from './base/base.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from '@angular/common/http';
+import { CoursesComponent } from './courses/courses.component';
+import { HomeComponent } from './home/home.component';
+import { UploadComponent } from './upload/upload.component';
 @NgModule({
   declarations: [
     AppComponent,
     StudentComponent,
     LoginComponent,
-    BaseComponent
+    BaseComponent,
+    CoursesComponent,
+    HomeComponent,
+    UploadComponent
   ],
   imports: [
     BrowserModule,

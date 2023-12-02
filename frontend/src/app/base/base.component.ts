@@ -8,8 +8,13 @@ import { LoginService } from '../services/login.service';
 })
 export class BaseComponent {
 constructor(private readonly authService:LoginService){}
-
+isWhiteBackground = true;
   logOut():void{
     this.authService.logOut();
+  }
+
+  changeColor(){
+    console.log("black")
+    this.isWhiteBackground = !this.isWhiteBackground;
   }
 }

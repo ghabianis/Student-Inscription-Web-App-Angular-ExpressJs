@@ -18,7 +18,7 @@ router.get('/absences/monthly',adminManagementController.monthly);
 router.get('/getallvisits',adminManagementController.getallvisits);
 router.delete('/deletevisit/:id',adminManagementController.deleteVisit);
 router.get('/getalldataforchart',adminManagementController.getAllDataForChart);
-
+router.get('/getStudentsCount',adminManagementController.CountStudents);
 
 
 

@@ -25,6 +25,18 @@ exports.students =async (req, res) => {
   }
 }
 
+
+exports.CountStudents = async (req, res, next) => {
+  try {
+    const query = 'SELECT COUNT(*) FROM students';
+    const result = await db.query(query);
+     return res.json({data:result[0]});
+  } catch (err) {
+    res.status(500).send('Server error');
+  }
+};
+
+
 exports.createStudent =async (req, res) => {
   try {
     console.log(req.body);

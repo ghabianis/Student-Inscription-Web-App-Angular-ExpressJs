@@ -19,10 +19,6 @@ export class StudentComponent implements OnInit{
   response : any = []
   updateForm!: FormGroup;
   createForm!: FormGroup;
-  // toggleForm(show: boolean): void {
-  //   this.showForm = show;
-  // }
-  $: any; 
 
   constructor(private readonly authService:LoginService,private readonly studentService:StudentService , private router: Router){
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;

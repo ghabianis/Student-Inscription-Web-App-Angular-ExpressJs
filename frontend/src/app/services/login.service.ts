@@ -47,7 +47,8 @@ export class LoginService {
 
   logOut(){
     localStorage.setItem("isUserLoggedIn",JSON.stringify(false))
-    localStorage.setItem("access_token","")
+    localStorage.removeItem("access_token")
+    sessionStorage.removeItem("session")
     this.router.navigate([""]);
   }
 
@@ -67,8 +68,9 @@ export class LoginService {
             // Your existing logic here
             this.userId = typedTokenObject.userId;
             localStorage.setItem("access_token", typedTokenObject.token);
+            sessionStorage.setItem("session",typedTokenObject.token)
             this.setIsUserLoggedIn(true);
-            this.router.navigate(["/students"]);
+            this.router.navigate(["/home"]);
         }),
         catchError(
             this.errorHandlerService.handleError<any>("login")

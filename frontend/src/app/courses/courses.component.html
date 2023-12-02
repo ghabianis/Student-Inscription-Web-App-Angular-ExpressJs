@@ -1,0 +1,80 @@
+
+<app-base></app-base>
+<div class="container-fluid">
+    <div class="row">
+   
+  
+      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+          <h1 class="h2">Courses</h1>
+          <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="btn-group me-2">
+              <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+              <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+            </div>
+            <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+              <span data-feather="calendar" class="align-text-bottom"></span>
+              This week
+            </button>
+          </div>
+        </div>
+  
+        <div class="container mt-5">
+            <form (ngSubmit)="upload()">
+            <div class="row">
+              <div class="col-md-12">
+                <div id="drop-zone" class="mb-3" (drop)="onDrop($event)" (dragover)="onDragOver($event)">
+                  <p class="mb-0">Drag and drop your files here or click to select</p>
+                  <label for="file-input" style="margin-top: 7%;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" id="upload"><switch><g><path d="M8 68V12C8 5.372 13.372 0 20 0h56c6.628 0 12 5.372 12 12v56c0 6.628-5.372 12-12 12H60v-8h16a4 4 0 0 0 4-4V12a4 4 0 0 0-4-4H20a4 4 0 0 0-4 4v56a4 4 0 0 0 4 4h16v8H20c-6.627 0-12-5.372-12-12zm21.172-21.172a4 4 0 0 0 5.656 0L44 37.657V92a4 4 0 0 0 8 0V37.657l9.172 9.171a4 4 0 1 0 5.656-5.656l-16-16a4 4 0 0 0-5.656 0l-16 16a3.997 3.997 0 0 0 0 5.656z"></path></g></switch></svg>
+                  </label>
+                  <input type="file" id="file-input" (change)="selectFile($event)" multiple style="display: none;">
+                  <div>
+                    <p>Selected Files:</p>
+                    <ul>
+                      <li >{{ selectedFiles?.item(0)?.name }}</li>
+                    </ul>
+                  </div>
+                </div>
+                <div *ngIf="currentFile" class="progress my-3">
+                    <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
+                        attr.aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100" [ngStyle]="{ width: progress + '%' }">
+                        {{ progress }}%
+                    </div>
+                </div>
+                
+                <div *ngIf="message" class="alert alert-secondary" role="alert">{{ message }}</div>
+              </div>
+              <button type="submit" class="btn btn-sm btn-outline-secondary d-grid gap-2 ml-5" id="submit-btn" style="width: 25%; height: 100%; margin-bottom: 1%;margin-left: 74%; color: black;font-size: 20px;">Upload File</button>
+
+              <div class="card col-md-12">
+                <div class="card-header">List of Files</div>
+                <ul class="list-group list-group-flush" *ngFor="let file of fileInfos | async">
+                  <li class="list-group-item">
+                    <a href="{{ file.url }}">{{ file.name }} </a>
+                    <button class="btn btn-outline-secondary" style="float: right;" (click)="download(file.name)"><i class="fa fa-download" aria-hidden="true" ></i></button>
+                    <button class="btn btn-outline-secondary" style="float: right; margin-right: 1%;"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-md-9 d-flex align-items-end mb-5">
+                <!-- <div style="width: 100%;">
+                  <label class="mb-0">Choose Classe:</label>
+                  <select class="form-select mb-3" multiple style="width: 100%;" [(ngModel)]="selectedOptions" name="selectedOptions">
+                    <optgroup >
+                      <option value="GINOF1.1">GINFO1.1</option>
+                      <option value="GINOF1.2">GINFO1.2</option>
+                      <option value="GINOF2.1">GINFO2.1</option>
+                      <option value="GINOF2.2">GINFO2.2</option>
+                    </optgroup>
+                  </select>
+                </div> -->
+              </div>
+            </div>
+        </form>
+          </div>
+          
+
+      </main>
+    </div>
+  </div>

@@ -11,6 +11,9 @@ module.exports = class Visit {
   static fetchAll() {
     return db.execute('SELECT * FROM students');
   }
+  static countStudent() {
+    return db.execute('SELECT COUNT(*) FROM students');
+  }
 
   static save(visit) {
     return db.execute(
