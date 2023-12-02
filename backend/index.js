@@ -81,6 +81,27 @@ app.get('/download/:name' , async(req,res)=>{
 })
 
 
+app.delete('/delete/:name', async (req, res) => {
+  const fileName = req.params.name;
+  const filePath = path.join(__dirname, '/resources/static/assets/uploads/', fileName);
+
+  // Delete the file
+  fs.unlink(filePath, (err) => {
+    if (err) {
+      res.status(500).send({
+        message: "Could not delete the file. " + err,
+      });
+    } else {
+      res.status(200).send({
+        message: "File deleted successfully.",
+      });
+    }
+  });
+});
+
+
+
+
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*','Authorization');

@@ -53,7 +53,7 @@
                   <li class="list-group-item">
                     <a href="{{ file.url }}">{{ file.name }} </a>
                     <button class="btn btn-outline-secondary" style="float: right;" (click)="download(file.name)"><i class="fa fa-download" aria-hidden="true" ></i></button>
-                    <button class="btn btn-outline-secondary" style="float: right; margin-right: 1%;"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                    <button class="btn btn-outline-secondary" style="float: right; margin-right: 1%;" (click)="delete(file.name)"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                   </li>
                 </ul>
               </div>

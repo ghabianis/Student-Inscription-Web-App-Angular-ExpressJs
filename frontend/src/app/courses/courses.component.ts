@@ -80,7 +80,7 @@ export class CoursesComponent {
               })
               setTimeout(() => {
                 window.location.reload();
-              }, 5000);
+              }, 1500);
             }
           },
           (err: any) => {
@@ -118,6 +118,34 @@ export class CoursesComponent {
     } catch (error) {
       console.error('Error downloading file:', error);
       // Handle error as needed
+    }
+  }
+
+  async delete(filename:string){
+    try {
+      const response = this.coursesService.deleteFile(filename);
+      if(!response){
+        Swal.fire({
+          position: "center",
+          icon: "warning",
+          title: `problem while deleting`,
+          showConfirmButton: false,
+          timer: 1000
+        })
+      }else{
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: `File Deleted Successfully!`,
+          showConfirmButton: false,
+          timer: 1000
+        })
+        setTimeout(() => {
+          window.location.reload();
+        }, 1500);
+      }
+    } catch (error) {
+      console.error(error);
     }
   }
 }

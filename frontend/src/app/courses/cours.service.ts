@@ -31,4 +31,9 @@ export class CoursService {
     const url = `${this.url}/download/${fileName}`;
     return this.http.get(url, { responseType: 'arraybuffer' }).toPromise();
   }
+
+  async deleteFile(fileName: string): Promise<any> {
+    const url = `${this.url}/delete/${fileName}`;
+    return this.http.delete(url).toPromise();
+  }
 }
