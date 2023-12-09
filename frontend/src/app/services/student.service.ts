@@ -55,8 +55,10 @@ export class StudentService {
           title: `Student With Email:${student.email} Created Successfully!`,
           showConfirmButton: false,
           timer: 1000
-        });
-        window.location.reload();
+        }).then(()=>{
+          this.getAllStudents()
+          location.reload()
+        })
       },
       (error) => {
         console.error('Error fetching students:', error);
@@ -74,7 +76,8 @@ export class StudentService {
           showConfirmButton: false,
           timer: 1000
         }).then(()=>{
-          window.location.reload();
+          this.getAllStudents()
+          location.reload()
         })
       },
       (error) => {
@@ -102,7 +105,8 @@ export class StudentService {
             showConfirmButton: false,
             timer: 1000
           }).then(()=>{
-            window.location.reload();
+            this.getAllStudents()
+            location.reload()
           })
         }
         
@@ -120,4 +124,41 @@ export class StudentService {
     )
   }
   
+  addAbsences(absence:any):any{
+    return this.http.post<any[]>(`${this.url}/absences`, absence).subscribe(
+      (response) => {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: `Student Absence Created Successfully!`,
+          showConfirmButton: false,
+          timer: 1000
+        }).then(()=>{
+          this.getAbsences()
+          location.reload()
+        })
+      },
+      (error) => {
+        Swal.fire({
+          position: "center",
+          icon: "warning",
+          title: `Student Absence/Presence already exist`,
+          showConfirmButton: false,
+          timer: 1000
+        });
+        console.error('Error fetching Data Absence:', error);
+      }
+    )
+  }
+
+
+  getAbsences(): Observable<any>{
+    return this.http.get<any>(`${this.url}/getAbsences`, { responseType: "json" })
+  }
+
+
+  getAbsencesCount(): Observable<any>{
+    return this.http.get<any>(`${this.url}/getAbsencesCount`, { responseType: "json" })
+  }
+
 }

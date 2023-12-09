@@ -1,0 +1,11 @@
+body{
+    margin-top:20px;
+    color: #8e9194;
+    background-color: #f4f6f9;
+    }
+    .text-muted {
+        color: #aeb0b4 !important;
+    }
+    .text-muted {
+        font-weight: 300;
+    }

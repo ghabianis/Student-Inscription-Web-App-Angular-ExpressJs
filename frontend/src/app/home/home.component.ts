@@ -11,15 +11,19 @@ export class HomeComponent implements OnInit {
   public chart: any;
   students: any = [];
   numberStudents: any = [];
+  fullName:any
+  AbsencesCount:any
 
   constructor(private readonly studentService: StudentService) { }
 
   ngOnInit() {
-    this.createChart()
+    this.createChart(this.AbsencesCount, this.AbsencesCount)
     this.getAllStudents();
     this.getStudentsCount()
+    this.getAbsencesCount()
+    this.user()
   }
-  createChart() {
+  createChart(absence:any , Presnece:any) {
     const chart = new CanvasJS.Chart('chartContainer', {
       animationEnabled: true,
       theme: 'light2',
@@ -27,8 +31,8 @@ export class HomeComponent implements OnInit {
         text: 'Data of the month',
       },
       axisX: {
-        title: 'Month',
-        valueFormatString: 'MMM'
+        title: 'Day',
+        valueFormatString: 'DD'
       },
       axisY: {
         title: 'Number of Students',
@@ -36,31 +40,20 @@ export class HomeComponent implements OnInit {
       data: [
         {
           type: 'column',
-          name: 'NbrAbsense',
+          name: 'Number of Absences',
           showInLegend: true,
-          legendText: 'NbrAbsense',
+          legendText: 'Number of Absences',
           dataPoints: [
-            { x: 1501048673000, y: 35.939 },
-            { x: 1501052273000, y: 40.896 },
-            { x: 1501055873000, y: 56.625 },
-            { x: 1501059473000, y: 26.003 },
-            { x: 1501063073000, y: 20.376 },
-            { x: 1501066673000, y: 19.774 },
-            { x: 1501070273000, y: 23.508 },
-            { x: 1501073873000, y: 18.577 },
-            { x: 1501077473000, y: 15.918 },
-            { x: 1501081073000, y: null }, // Null Data
-            { x: 1501084673000, y: 10.314 },
-            { x: 1501088273000, y: 10.574 },
-            { x: 1501091873000, y: 14.422 },
-            { x: 1501095473000, y: 18.576 },
-            { x: 1501099073000, y: 22.342 },
-            { x: 1501102673000, y: 22.836 },
-            { x: 1501106273000, y: 23.220 },
-            { x: 1501109873000, y: 23.594 },
-            { x: 1501113473000, y: 24.596 },
-            { x: 1501117073000, y: 31.947 },
-            { x: 1501120673000, y: 31.142 }
+            { x: new Date() , y: absence}
+          ]
+        },
+        {
+          type: 'column',
+          name: 'Number of Presnces',
+          showInLegend: true,
+          legendText: 'Number of Presnces',
+          dataPoints: [
+            { x: new Date() , y: Presnece}
           ]
         },
       ],
@@ -88,6 +81,26 @@ export class HomeComponent implements OnInit {
       (response) => {
         console.log(response)
           this.numberStudents = response.data[0]['COUNT(*)'];
+      },
+      (error) => {
+        console.error('Error fetching students:', error);
+      }
+    );
+  }
+
+  user(){
+    const user = localStorage.getItem('user')
+    const jsonObject = JSON.parse(user!);
+    this.fullName = jsonObject.name +" "+jsonObject.username 
+  }
+
+
+  getAbsencesCount(){
+    this.studentService.getAbsencesCount().subscribe(
+      (response) => {
+        this.AbsencesCount = response;
+        console.log("ffffffff",this.AbsencesCount.data.absent_count)
+        this.createChart(this.AbsencesCount.data.absent_count ,this.AbsencesCount.data.present_count )
       },
       (error) => {
         console.error('Error fetching students:', error);

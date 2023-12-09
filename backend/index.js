@@ -81,6 +81,7 @@ app.get('/download/:name' , async(req,res)=>{
 })
 
 
+
 app.delete('/delete/:name', async (req, res) => {
   const fileName = req.params.name;
   const filePath = path.join(__dirname, '/resources/static/assets/uploads/', fileName);

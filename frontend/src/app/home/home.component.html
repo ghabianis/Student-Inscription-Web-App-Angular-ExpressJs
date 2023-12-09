@@ -5,7 +5,7 @@
 
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Dashboard</h1>
+        <h1 class="h2"> Welcome To Dashboard <span class="wave">👋  </span> {{fullName}}</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
           <div class="btn-group me-2">
             <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
@@ -19,33 +19,33 @@
       </div>
 
       <div class="container mt-4">
-        <div class="row">
+        <div class="row" >
           <!-- Card 1: Students -->
           <div class="col-md-4">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Students</h5>
-                <p class="card-text" ><i class="bi bi-person"></i> {{numberStudents}}</p>
+            <div class="card text-center zoom-card" title="Number Of Students">
+              <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                <i  class="fa fa-users" style="font-size: 35px; margin-top: 7%;"></i>
+                <p class="card-text" style="margin-bottom: 7%;  font-size: 35px;"><i class="bi bi-person"></i> {{numberStudents}}</p>
               </div>
             </div>
           </div>
       
           <!-- Card 2: Courses -->
           <div class="col-md-4">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Courses</h5>
-                <p class="card-text"><i class="bi bi-book"></i> 20</p>
+            <div class="card text-center zoom-card" title="Number Of Students">
+              <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                <i  class="fa fa-book" style="font-size: 35px; margin-top: 7%;"></i>
+                <p class="card-text" style="margin-bottom: 7%;  font-size: 35px;"><i class="bi bi-person"></i> 20</p>
               </div>
             </div>
           </div>
       
           <!-- Card 3: Teachers -->
           <div class="col-md-4">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Teachers</h5>
-                <p class="card-text"><i class="bi bi-person-fill"></i> 10</p>
+            <div class="card text-center zoom-card" title="Number Of Students">
+              <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                <i  class="fa fa-users" style="font-size: 35px; margin-top: 7%;"></i>
+                <p class="card-text" style="margin-bottom: 7%;  font-size: 35px;"><i class="bi bi-person"></i> 10</p>
               </div>
             </div>
           </div>

@@ -11,6 +11,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { CoursesComponent } from './courses/courses.component';
 import { HomeComponent } from './home/home.component';
 import { UploadComponent } from './upload/upload.component';
+import { PartnersComponent } from './partners/partners.component';
+import { CalanderComponent } from './calander/calander.component';
+import { SettingsComponent } from './settings/settings.component';
+import { ProfileComponent } from './profile/profile.component';
+import { NotificationComponent } from './notification/notification.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +24,12 @@ import { UploadComponent } from './upload/upload.component';
     BaseComponent,
     CoursesComponent,
     HomeComponent,
-    UploadComponent
+    UploadComponent,
+    PartnersComponent,
+    CalanderComponent,
+    SettingsComponent,
+    ProfileComponent,
+    NotificationComponent
   ],
   imports: [
     BrowserModule,

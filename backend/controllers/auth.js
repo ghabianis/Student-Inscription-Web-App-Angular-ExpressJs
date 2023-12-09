@@ -64,7 +64,7 @@ bcrypt.compare(password, storedUser.password, function(err, result) {
     'secretfortoken',
     { expiresIn: '1h' }
   );
-  res.status(200).json({ token: token, userId: storedUser.id });
+  res.status(200).json({ token: token, userId: storedUser.id , email:storedUser.email,username:storedUser.username,name:storedUser.name});
  
 });
 

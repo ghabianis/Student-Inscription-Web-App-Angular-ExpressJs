@@ -2,13 +2,13 @@
 <div class="container-fluid">
     <div class="row" >
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-            <div
-                class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                <h1 class="h2">Courses</h1>
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-1 border-bottom"
+                style="margin-top: -2%;">
+                <h1 class="h2">Students Management/{{action}}</h1>
                 <div class="btn-toolbar mb-2 mb-md-0">
                     <div class="btn-group me-2">
                         <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
-                        <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary" (click)="generatePDF()">Export</button>
                     </div>
                     <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
                         <span data-feather="calendar" class="align-text-bottom"></span>
@@ -16,7 +16,7 @@
                     </button>
                 </div>
             </div>
-            <ul class="nav nav-pills nav-fill gap-2 p-1 small bg-primary rounded-5 shadow-sm w-75 ml-75"
+            <ul class="nav nav-pills nav-fill gap-2 p-1 small bg-secondary rounded-5 shadow-sm w-100 ml-75"
                 id="pillNav2" role="tablist"
                 style="--bs-nav-link-color: var(--bs-white); --bs-nav-pills-link-active-color: var(--bs-primary); --bs-nav-pills-link-active-bg: var(--bs-white);">
                 <li class="nav-item" role="presentation">
@@ -61,7 +61,7 @@
                 <table class="table table-striped table-sm" *ngIf="showTable">
                     <thead>
                         <tr>
-                            <th scope="col">Id</th>
+                            <th scope="col">#</th>
                             <th scope="col">Email</th>
                             <th scope="col">FirstName</th>
                             <th scope="col">LastName</th>
@@ -78,12 +78,13 @@
                             <td>{{ student.classname }}</td>
                             <td>
                                 <button class="btn btn mr-3" type="button" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal"><i class="fa fa-edit"
-                                        style="font-size:20px;color:red"></i></button>
+                                    data-bs-target="#exampleModal" (click)="showId(student)"><i class="fa fa-edit"
+                                        style="font-size:20px;color:red"></i>
+                                </button>
                                 <button class="btn btn mr-3" (click)="deleteStudent(student.id)"><i
-                                        class="fa fa-trash-o" style="font-size:20px"></i></button>
+                                        class="fa fa-trash-o" style="font-size:20px"></i>
+                                </button>
                             </td>
-
                             <!-- Modal -->
                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                                 aria-hidden="true">
@@ -95,39 +96,38 @@
                                                 aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <form [formGroup]="updateForm" (ngSubmit)="updateStudent(student.id)"
-                                                novalidate>
+                                            <form [formGroup]="updateForm" novalidate>
                                                 <div class="mb-3">
                                                     <label for="exampleInputEmail1" class="form-label">Email
                                                         address</label>
                                                     <input type="email" class="form-control" id="exampleInputEmail1"
-                                                        aria-describedby="emailHelp" formControlName="email"
-                                                        [(ngModel)]="student.email">
+                                                        aria-describedby="emailHelp" formControlName="email"  [value]="student.email">
                                                     <div id="emailHelp" class="form-text">We'll never share your email
                                                         with anyone else.</div>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="exampleInputPassword1" class="form-label"></label>
                                                     <input type="text" class="form-control" id="exampleInputPassword1"
-                                                        formControlName="lastname" [(ngModel)]="student.lastname">
+                                                        formControlName="lastname" [value]="student.lastname">
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="exampleInputPassword1"
                                                         class="form-label">FirstName</label>
                                                     <input type="text" class="form-control" id="exampleInputPassword1"
-                                                        formControlName="firstname" [(ngModel)]="student.firstname">
+                                                        formControlName="firstname" [value]="student.firstname">
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="exampleInputPassword1" class="form-label">Class</label>
                                                     <input type="text" class="form-control" id="exampleInputPassword1"
-                                                        formControlName="classname" [(ngModel)]="student.classname">
+                                                        formControlName="classname" [value]="student.classname">
                                                 </div>
 
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-sm btn-outline-primary"
                                                         data-bs-dismiss="modal">Close</button>
-                                                    <button type="submit" class="btn btn-sm btn-outline-danger"
-                                                        data-bs-dismiss="modal">Update</button>
+                                                    <button type="button" class="btn btn-sm btn-outline-danger"
+                                                        data-bs-dismiss="modal"
+                                                        (click)="updateStudent()">Update</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -135,12 +135,89 @@
                                     </div>
                                 </div>
                             </div>
+
                         </tr>
                     </tbody>
                 </table>
             </div>
-
-
+            <div class="row mb-3" style="margin-bottom: 5%;" id="Absense"  *ngIf="showManagement">
+                <div class="col-sm-4">
+                  <div class="card text-center zoom-card">
+                    <div class="card-body">
+                      <h5 class="card-title"><i class="fa fa-clock-o" aria-hidden="true" style="font-size:25px"></i></h5>
+                      <p class="card-text">{{ formattedDateTime }}</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="card text-center zoom-card">
+                    <div class="card-body">
+                      <h5 class="card-title">Number Of Presences</h5>
+                      <p class="card-text">{{ this.AbsencesCount.data.present_count }}</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="card text-center zoom-card">
+                    <div class="card-body">
+                      <h5 class="card-title">Number Of Absences</h5>
+                      <p class="card-text">{{ this.AbsencesCount.data.absent_count }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div> 
+            <div class="table-responsive mt-5">
+                <table class="table table-striped table-sm" *ngIf="showManagement" >
+                    <thead>
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">FirstName</th>
+                            <th scope="col">LastName</th>
+                            <th scope="col">Class</th>
+                            <th scope="col">Absent</th>
+                            <th scope="col">Present</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let student of students.data; let i = index">
+                          <th scope="row">{{ i + 1 }}</th>
+                          <td>{{ student.email }}</td>
+                          <td>{{ student.firstname }}</td>
+                          <td>{{ student.lastname }}</td>
+                          <td>{{ student.classname }}</td>
+                          <td>
+                            <div class="form-check form-switch">
+                              <input
+                                class="form-check-input"
+                                type="checkbox"
+                                id="flexSwitchCheckAbsent_{{ i }}"
+                                (change)="absent($event, student)"
+                                [checked]="isAbsentChecked(student)"
+                              />
+                            </div>
+                          </td>
+                          <td>
+                            <div class="form-check form-switch">
+                              <input
+                                class="form-check-input"
+                                type="checkbox"
+                                id="flexSwitchCheckPresent_{{ i }}"
+                                (change)="present($event, student)"
+                                [checked]="isPresentChecked(student)"
+                              />
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                      
+                   
+                      
+                      
+                </table>
+              
+            
+                </div>
         </main>
     </div>
 </div>

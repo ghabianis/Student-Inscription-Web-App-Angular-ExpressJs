@@ -11,14 +11,12 @@
             class="fas fa-chart-bar fa-fw me-3"></i><span>Students</span></a>
         <a routerLink="/courses" class="list-group-item list-group-item-action py-2 ripple"><i
             class="fas fa-globe fa-fw me-3"></i><span>Courses</span></a>
-        <a routerLink="/home" class="list-group-item list-group-item-action py-2 ripple"><i
+        <a routerLink="/partners" class="list-group-item list-group-item-action py-2 ripple"><i
             class="fas fa-building fa-fw me-3"></i><span>Partners</span></a>
-        <a routerLink="/home" class="list-group-item list-group-item-action py-2 ripple"><i
+        <a routerLink="/calander" class="list-group-item list-group-item-action py-2 ripple"><i
             class="fas fa-calendar fa-fw me-3"></i><span>Calendar</span></a>
         <a routerLink="/home" class="list-group-item list-group-item-action py-2 ripple"><i
             class="fas fa-users fa-fw me-3"></i><span>Users</span></a>
-        <a routerLink="/home" class="list-group-item list-group-item-action py-2 ripple"><i
-            class="fas fa-money-bill fa-fw me-3"></i><span>Sales</span></a>
       </div>
     </div>
   </nav>
@@ -129,10 +127,10 @@
           </a>
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
             <li>
-              <a class="dropdown-item" href="#">My profile</a>
+              <a class="dropdown-item" routerLink="/profile">My profile</a>
             </li>
             <li>
-              <a class="dropdown-item" href="#">Settings</a>
+              <a class="dropdown-item" routerLink="/settings/Security">Settings</a>
             </li>
             <li>
               <a class="dropdown-item" (click)="logOut()">Logout</a>
